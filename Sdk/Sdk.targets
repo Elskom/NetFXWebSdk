@@ -1,0 +1,30 @@
+<Project>
+
+  <!-- This target contains a hack that temporarily fixes https://github.com/aspnet/RoslynCodeDomProvider/pull/155 until it gets merged. -->
+  <Target Name="FixPublish" AfterTargets="Publish">
+    <!-- When the Microsoft.CodeDom.Providers.DotNetCompilerPlatform merges these 2 pull requests remove this from the task. -->
+    <Message Text="This task temporarily fixes https://github.com/aspnet/RoslynCodeDomProvider/pull/155 until it gets merged." Importance="high" />
+    <Message Text="Go vote up that pull request to convince the maintainers to merge it and https://github.com/aspnet/RoslynCodeDomProvider/pull/157." Importance="high" />
+    <Message Text="That second pull request updates roslyn from v4.1.0 to v4.7.0 which would allow newer C# language features in your views!!!" Importance="high" />
+    <ItemGroup>
+      <CustomRoslynFiles Include="$(RoslynToolPath)\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CustomRoslynFiles)" DestinationFolder="$(PublishDir)bin\roslyn" ContinueOnError="true" SkipUnchangedFiles="true" Retries="0" />
+
+    <!--
+        Remove the refs folder from the publish output.
+        This is getting annoying that even with ProduceReferenceAssembly and ProduceReferenceAssemblyInOutDir
+        set to false that it STILL puts them in the publish directory.
+    -->
+    <RemoveDir Directories="$(PublishDir)refs" />
+
+    <!-- Move build outputs from $(PublishDir) to $(PublishDir)\bin. -->
+    <ItemGroup>
+      <!-- Include *.dll, *.pdb, and *.config files excluding web.config -->
+      <WebPublishBinFiles Include="$(PublishDir)*.dll;$(PublishDir)*.pdb;$(PublishDir)*.config" Exclude="$(PublishDir)web.config" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WebPublishBinFiles)" DestinationFolder="$(PublishDir)\bin" ContinueOnError="true" SkipUnchangedFiles="true" Retries="0" />
+    <Delete Files="@(WebPublishBinFiles)" />
+  </Target>
+
+</Project>

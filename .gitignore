@@ -1,0 +1,23 @@
+.vs/
+artifacts/
+*.log
+bin
+obj
+# backup files stored on the users machine.
+*.bak
+# ignore rider bullshit files.
+.idea/
+# not needed anymore, kept locally just in case however.
+XmlAbstraction/
+*.binlog
+GitInfo.json
+
+# opening Finder on mac inside the repository creates these.
+.DS_Store
+*.user
+
+# exclude security scanning results.
+results.sarif
+
+# prevent build time generated props file from ever making it's way into the repository.
+Sdk/Sdk.Runtime.props
