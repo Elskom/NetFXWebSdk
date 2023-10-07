@@ -1,7 +1,7 @@
 <Project>
 
   <!-- This target contains a hack that temporarily fixes https://github.com/aspnet/RoslynCodeDomProvider/pull/155 until it gets merged. -->
-  <Target Name="FixPublish" AfterTargets="Publish">
+  <Target Name="FixPublish" AfterTargets="Publish" Condition="'$(UsingMicrosoftNETSdkWeb)' != ''">
     <!-- When the Microsoft.CodeDom.Providers.DotNetCompilerPlatform merges these 2 pull requests remove this from the task. -->
     <Message Text="This task temporarily fixes https://github.com/aspnet/RoslynCodeDomProvider/pull/155 until it gets merged." Importance="high" />
     <Message Text="Go vote up that pull request to convince the maintainers to merge it and https://github.com/aspnet/RoslynCodeDomProvider/pull/157." Importance="high" />

@@ -4,12 +4,12 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <PackageTags>Web</PackageTags>
     <Description>Elskom SDK for development of Web projects. This helps simplify the setup of .NET Framework Web projects that use the .NET SDK and fixes a few issues from doing so This results in identical publish outputs with the Non-SDK style versions of the same projects.</Description>
-    <PackageReleaseNotes>Initial Release.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed issue where publish task could run on non-web projects when the SDK is used on backend projects.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
