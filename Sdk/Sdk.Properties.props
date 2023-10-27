@@ -1,0 +1,31 @@
+<Project>
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <DebugType>embedded</DebugType>
+    <!-- Disable .deps.json as it's not needed by .NET Framework targets. -->
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <!-- We do not need these 2, we need roslyn though. -->
+    <ProduceReferenceAssembly Condition="'$(ProduceReferenceAssembly)' == ''">false</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>false</ProduceReferenceAssemblyInOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(UsingMicrosoftNETSdkWeb)' != ''">
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <!-- hack to get what I want. -->
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+    <RunXdt>true</RunXdt>
+    <UseGlobalApplicationHostFile />
+    <!-- hack to allow debugging the web project in visual studio.-->
+    <RunCommand Condition="'$(UseIISExpress)' == 'true' AND '$(Use64BitIISExpress)' == 'true'">$(MSBuildExtensionsPath64)\..\IIS Express\iisexpress</RunCommand>
+    <RunCommand Condition="'$(UseIISExpress)' == 'true' AND '$(Use64BitIISExpress)' == 'false'">$(MSBuildProgramFiles32)\IIS Express\iisexpress</RunCommand>
+    <RunArguments Condition="'$(UseIISExpress)' == 'true'">/path:"$(MSBuildProjectDirectory)" /port:$(IISExpressSSLPort)"</RunArguments>
+    <!-- hack until https://github.com/aspnet/RoslynCodeDomProvider/pull/155 gets merged. -->
+    <RoslynCopyToOutDir>false</RoslynCopyToOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(UsingMicrosoftNETSdkWeb)' == ''">
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+</Project>
