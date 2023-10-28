@@ -4,12 +4,12 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <PackageTags>Web</PackageTags>
     <Description>Elskom SDK for development of Web projects. This helps simplify the setup of .NET Framework Web projects that use the .NET SDK and fixes a few issues from doing so This results in identical publish outputs with the Non-SDK style versions of the same projects.</Description>
-    <PackageReleaseNotes>Restructured the Sdk.props file to help narrow down the debug type issue on non-web backend projects.</PackageReleaseNotes>
+    <PackageReleaseNotes>For some reason MSBuild bugged when splitting references outside of Sdk.props.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
